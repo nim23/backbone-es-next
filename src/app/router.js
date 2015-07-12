@@ -4,12 +4,12 @@ import App from './views/app';
 
 export default Backbone.Router.extend({
 
-  routes: {
-    '*path': 'defaultRoute'
-  },
+	routes: {
+		'*path': 'defaultRoute'
+	},
 
-  defaultRoute() {
-    let app = new App();
-  },
+	defaultRoute() {
+		const app = new App();
+	}
 
 });
