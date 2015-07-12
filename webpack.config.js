@@ -11,6 +11,7 @@ module.exports.development = {
     output: output,
     module : {
         loaders : [
+            { test: /\.html$/, loader: 'raw', exclude: /node_modules/ },
             { test: /\.js?$/, exclude: /node_modules/, loader: 'babel-loader' }
         ]
     }
@@ -22,6 +23,7 @@ module.exports.production = {
     output: output,
     module : {
         loaders : [
+            { test: /\.html$/, loader: 'raw', exclude: /node_modules/ },
             { test: /\.js?$/, exclude: /node_modules/, loader: 'babel-loader' }
         ]
     }

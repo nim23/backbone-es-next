@@ -42,16 +42,11 @@ gulp.task('html', function() {
 });
 
 gulp.task('styles',function(cb) {
-  return gulp.src(src + 'stylus/main.styl')
-    .pipe($.stylus({
-      compress: isProduction,
-      'include css' : true
-    }))
+  return gulp.src(src + 'styles/todos.css')
     .pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
     .pipe(gulp.dest(dist + 'css/'))
     .pipe($.size({ title : 'css' }))
     .pipe($.connect.reload());
-
 });
 
 gulp.task('serve', function() {
