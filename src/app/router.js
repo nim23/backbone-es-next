@@ -1,15 +1,14 @@
 import $ from 'jquery';
 import Backbone from 'backbone';
 import App from './views/app';
+import {props, route} from './decorators';
 
-export default Backbone.Router.extend({
+class AppRouter extends Backbone.Router {
 
-	routes: {
-		'*path': 'defaultRoute'
-	},
-
+	@route('*path')
 	defaultRoute() {
 		const app = new App();
 	}
 
-});
+};
+export default AppRouter;

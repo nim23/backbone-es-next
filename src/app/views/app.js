@@ -3,18 +3,13 @@ import TodoView from '../views/todo';
 import Todos from '../collections/todolist';
 import _ from 'underscore';
 import backbone from 'backbone';
+import {props, template, on} from '../decorators';
 
-export default Backbone.View.extend({
-
-	el: $("#todoapp"),
-
-	statsTemplate: _.template(require('../template/stats.html')),
-
-	events: {
-		"keypress #new-todo":  "createOnEnter",
-		"click #clear-completed": "clearCompleted",
-		"click #toggle-all": "toggleAllComplete"
-	},
+@props({
+	el: $('#todoapp'),
+	statsTemplate: _.template(require('../template/stats.html'))
+})
+class AppView extends Backbone.View {
 
 	initialize() {
 		this.input = this.$("#new-todo");
@@ -30,7 +25,7 @@ export default Backbone.View.extend({
 		this.main = $('#main');
 
 		this.todos.fetch();
-	},
+	}
 
 	render() {
 		let done = this.todos.done().length;
@@ -46,32 +41,37 @@ export default Backbone.View.extend({
 		}
 
 		this.allCheckbox.checked = !remaining;
-	},
+	}
 
 	addOne(todo) {
 		let view = new TodoView({model: todo});
 		this.$("#todo-list").append(view.render().el);
-	},
+	}
 
 	addAll() {
 		this.todos.each(this.addOne, this);
-	},
+	}
 
+	@on('keypress #new-todo')
 	createOnEnter(e) {
 		if (e.keyCode != 13) return;
 		if (!this.input.val()) return;
 
 		this.todos.create({title: this.input.val()});
 		this.input.val('');
-	},
+	}
 
+	@on('click #clear-completed')
 	clearCompleted() {
 		_.invoke(this.todos.done(), 'destroy');
 		return false;
-	},
+	}
 
+	@on('click #toggle-all')
 	toggleAllComplete() {
 		let done = this.allCheckbox.checked;
 		this.todos.each((todo) => { todo.save({'done': done}); });
 	}
-});
+};
+
+export default AppView;

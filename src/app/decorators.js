@@ -12,8 +12,31 @@ export function template(value) {
 		}
 }
 
+export function props(obj) {
+	return function decorator(target) {
+		_.extend(target.prototype, obj);
+	}
+}
+
+export function route(path) {
+	return function decorator(target, name, descriptor) {
+		if(!target.routes) {
+			target.routes = {};
+		}
+		if(_.isFunction(target.routes)) {
+			throw new Error('The on decorator is not compatible with a routes method');
+			return;
+		}
+		if(!path) {
+			throw new Error('The on decorator requires an route argument');
+		}
+		target.routes[path] = name;
+		return descriptor;
+	}
+}
+
 export function on(eventName){
-	return function(target, name, descriptor){
+	return function decorator(target, name, descriptor){
 		if(!target.events) {
 				target.events = {};
 		}
