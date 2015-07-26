@@ -1,7 +1,7 @@
 {
-  "name": "modern-backbone-starterkit",
+  "name": "Backbone es-next",
   "version": "0.1.0",
-  "description": "Lightweight starting point for a modern backbone web app.",
+  "description": "Playing around with backnone and es next next features",
   "keywords": [
     "backbone",
     "starterkit",
@@ -15,11 +15,11 @@
   "scripts": {
     "start": "gulp"
   },
-  "author": "@sabarasaba <rivasign@gmail.com>",
+  "author": "@nim23 <n.gurung-10@alumni.lboro.ac.uk>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/sabarasaba/modern-backbone-starterkit.git"
+    "url": "https://github.com/nim23/backbone-es-next.git"
   },
   "devDependencies": {
     "babel-core": "^5.0.0",
